@@ -1,0 +1,109 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 7vh;
+  --card-width: calc(var(--card-height) / 2.5);
+}
+
+
+body {
+  min-height: 90vh;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  flex-direction: center;
+  flex-flow: row wrap;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  box-sizing: content-box;
+width: 100%;
+border: dotted #5B6DCD 10px;
+padding: 1.5em;
+}
+
+
+.card {
+  background: #445a6e;
+  width: 220px;
+  height: 180px;
+  padding: 1.5em;
+  position: relative;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  text-align: row;
+  display: flex;
+  font-size: 2em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+}
+
+.card:hover {
+  color: rgb(191 227 216 / 50%);
+  transition: color 0.2s;
+}
+.card:hover:before, .card:hover:after {
+  animation: blink;
+  opacity: 10;
+}
+
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 2px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #a88096, #e33c9b 5%, #c2002a);
+    position: absolute;
+    z-index: -1;
+    top: -3%;
+    left: -1%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 5;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(1.5);
+  filter: blur(calc(var(--card-height) / 2));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #753434, #506194 90%, #00abc2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: #000000;
+  text-decoration: overline;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: lighter;
+  text-decoration-style: discrete;
+  writing-mode: vertical-rl;
+  margin-left: 25%;
+  text-orientation: upright;
+}
